@@ -1,0 +1,12 @@
+{% extends 'layout.html' %}
+{% block title %}
+    Csrf Handler
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="offset-3 col-6">
+            <p class="alert alert-danger">{{ reason }}</p>
+        </div>
+    </div>
+{% endblock %}

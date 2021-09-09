@@ -1,0 +1,25 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Create Post
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+
+        <div class="offset-3 col-6">
+            <form method="post">
+                {{ form.csrf_token }}
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label"> {{ form.title.label }}</label>
+                    {{ form.title(class_ = 'form-control' ) }}
+                </div>
+                 <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label"> {{ form.description.label }}</label>
+                    {{ form.description(class_ = 'form-control' ) }}
+                </div>
+                <input type="submit" class="btn btn-success" value="save">
+            </form>
+        </div>
+    </div>
+{% endblock %}
