@@ -52,5 +52,4 @@ def delete(post_id):
         db.session.commit()
         flash('Successfully deleted')
         return redirect(url_for("posts.post_list"))
-
     return render_template("posts/delete.html", post=post)
