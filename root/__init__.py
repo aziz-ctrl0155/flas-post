@@ -1,9 +1,14 @@
+from os import path
+
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+import pathlib
 
 db = SQLAlchemy()
 
-db_name = "database.sqlite"
+DB_NAME = "database.sqlite"
+BASE_PATH = pathlib.Path(__file__).parent
+DB_PATH = path.join(BASE_PATH, 'database', DB_NAME)
 
 
 def create_app():
@@ -18,7 +23,7 @@ def create_app():
     app.register_blueprint(posts)
 
     """Db Configurations"""
-    app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{db_name}'
+    app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_PATH}'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     db.init_app(app)
     create_db(app)
@@ -29,4 +34,6 @@ def create_app():
 
 
 def create_db(app):
-    pass
+    print(DB_PATH)
+    if not path.exists(DB_PATH):
+        db.create_all(app=app)
